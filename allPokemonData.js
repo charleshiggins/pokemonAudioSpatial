@@ -1,89 +1,89 @@
 allPokemonData = [{
     "pokemonID": 1,
     "name": "Bulbasaur",
-    "sprite": "Bulbasaur.png",
+    "sprite": "images/Bulbasaur.png",
     "audio": "Audio/1.WAV"
 },
 {
     "pokemonID": 4,
     "name": "Charmander",
-    "sprite": "Charmander.png",
+    "sprite": "images/Charmander.png",
     "audio": "Audio/4.WAV"
 }, {
     "pokemonID": 6,
     "name": "Charizard",
-    "sprite": "Charizard.png",
+    "sprite": "images/Charizard.png",
     "audio": "Audio/6.WAV"
 }, {
     "pokemonID": 7,
     "name": "Squirtle",
-    "sprite": "Squirtle.png",
+    "sprite": "images/Squirtle.png",
     "audio": "Audio/7.WAV"
 }, {
     "pokemonID": 25,
     "name": "Pikachu",
-    "sprite": "Pikachu.png",
+    "sprite": "images/Pikachu.png",
     "audio": "Audio/25.WAV"
 },
 {
     "pokemonID": 43,
     "name": "Oddish",
-    "sprite": "Oddish.png",
+    "sprite": "images/Oddish.png",
     "audio": "Audio/43.WAV"
 },
 {
     "pokemonID": 50,
     "name": "Diglett",
-    "sprite": "Diglett.png",
+    "sprite": "images/Diglett.png",
     "audio": "Audio/50.WAV"
 },
 
 {
     "pokemonID": 54,
     "name": "Psyduck",
-    "sprite": "Psyduck.png",
+    "sprite": "images/Psyduck.png",
     "audio": "Audio/54.WAV"
 },
 {
     "pokemonID": 81,
     "name": "Magnemite",
-    "sprite": "Magnemite.png",
+    "sprite": "images/Magnemite.png",
     "audio": "Audio/81.WAV"
 },
 {
     "pokemonID": 95,
     "name": "Onix",
-    "sprite": "Onix.png",
+    "sprite": "images/Onix.png",
     "audio": "Audio/95.WAV"
 },
 {
     "pokemonID": 98,
     "name": "Krabby",
-    "sprite": "Krabby.png",
+    "sprite": "images/Krabby.png",
     "audio": "Audio/98.WAV"
 },
 {
     "pokemonID": 126,
     "name": "Magmar",
-    "sprite": "Magmar.png",
+    "sprite": "images/Magmar.png",
     "audio": "Audio/126.WAV"
 },
 {
     "pokemonID": 130,
     "name": "Gyarados",
-    "sprite": "Gyarados.png",
+    "sprite": "images/Gyarados.png",
     "audio": "Audio/130.WAV"
 },
 {
     "pokemonID": 143,
     "name": "Snorlax",
-    "sprite": "Snorlax.png",
+    "sprite": "images/Snorlax.png",
     "audio": "Audio/130.WAV"
 },
 {
     "pokemonID": 151,
     "name": "Mew",
-    "sprite": "Mew.png",
+    "sprite": "images/Mew.png",
     "audio": "Audio/151.WAV"
 },
 

@@ -7,6 +7,8 @@ class Level {
         this.pokemonCoordinates = allLevelData[level].pokemonCoordinates
         this.completed = false
         this.keyInputListener
+        this.levelScore = 0
+        this.levleTimer
     }
 
     init() {
@@ -107,7 +109,7 @@ class Level {
                 }
                 else {
                     document.removeEventListener('keydown', this.keyInputListener);
-                    goNextLevel()
+                    goNextLevel(this.levelScore)
                 }
                 break
             default:
@@ -115,39 +117,37 @@ class Level {
         }
     }
 
-
-
-
     createKeyListener() {
         this.keyInputListener = ((e) => this.handleKeyInput(e)).bind(this)
         document.addEventListener('keydown', this.keyInputListener);
     }
-
-
-
 
     move(direction) {
         switch (direction) {
             case 'left':
                 if (this.peekMove([this.currentPosition[0] - 1, this.currentPosition[1]])) {
                     this.updateGrid([this.currentPosition[0] - 1, this.currentPosition[1]])
+                    this.levelScore -= 12
                 }
                 break
 
             case 'right':
                 if (this.peekMove([this.currentPosition[0] + 1, this.currentPosition[1]])) {
                     this.updateGrid([this.currentPosition[0] + 1, this.currentPosition[1]])
+                    this.levelScore -= 12
                 }
                 break
             case 'up':
                 if (this.peekMove([this.currentPosition[0], this.currentPosition[1] - 1])) {
                     this.updateGrid([this.currentPosition[0], this.currentPosition[1] - 1])
+                    this.levelScore -= 12
                 }
                 break
 
             case 'down':
                 if (this.peekMove([this.currentPosition[0], this.currentPosition[1] + 1])) {
                     this.updateGrid([this.currentPosition[0], this.currentPosition[1] + 1])
+                    this.levelScore -= 12
                 }
                 break
             default:
@@ -161,7 +161,7 @@ class Level {
         if (location[0] > 9 || location[0] < 0 || location[1] > 9 || location[1] < 0) {
             return false
         }
-        else if (this.isTherePokemonAt(location[0], location[1])) { //this one checks if there's a pokemon tehre
+        else if (this.isTherePokemonAt(location[0], location[1])) {
             return false
         }
         else {
@@ -237,6 +237,7 @@ class Level {
         for (let i = 0; i < this.pokemonCoordinates.length; i++) {
             if (this.pokemonCoordinates[i].coordinates[0] == x && this.pokemonCoordinates[i].coordinates[1] == y) {
                 this.pokemonCoordinates.splice(i, 1)
+                this.levelScore += 3000
                 this.drawGrid()
                 if (this.checkLevelComplete()) {
                     this.finishLevel()
@@ -257,10 +258,6 @@ class Level {
     finishLevel() {
         console.log('the level is over')
         this.completed = true;
-        document.querySelector('#gameArea').innerHTML = 'level completed, press space to continue'
-
-        //show stats
-        // document.body.outerHTML = document.body.outerHTML
-        //delete event listeners
+        document.querySelector('#gameArea').innerHTML = 'level completed, press space to continue' + this.levelScore
     }
 }

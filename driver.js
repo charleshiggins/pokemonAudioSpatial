@@ -1,13 +1,15 @@
 document.addEventListener("DOMContentLoaded", function (event) {
     level = 0
+    score = 0
     theGame = new PokemonAudioSpatialGame 
     theLevel = new Level(level)
     theLevel.init()
 });
 
 
-function goNextLevel() { //can put stats here to persist between levels
+function goNextLevel(score) { //can put stats here to persist between levels
     level++
+    console.log(score)
     if(level < allLevelData.length){
         nextLevel = new Level(level)
         nextLevel.init()

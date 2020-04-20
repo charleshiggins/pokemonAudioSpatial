@@ -115,7 +115,7 @@ class Level {
                 }
                 else if (this.currLevel < allLevelData.length) {
                     document.removeEventListener('keydown', this.keyInputListener);
-                    goNextLevel(this.levelScore)
+                    goNextLevel(this.handleLevelScore(this.levelScore))
                 }
                 else {
                     document.removeEventListener('keydown', this.keyInputListener);
@@ -137,27 +137,27 @@ class Level {
             case 'left':
                 if (this.peekMove([this.currentPosition[0] - 1, this.currentPosition[1]])) {
                     this.updateGrid([this.currentPosition[0] - 1, this.currentPosition[1]])
-                    this.levelScore -= 12
+                    this.levelScore -= 55
                 }
                 break
 
             case 'right':
                 if (this.peekMove([this.currentPosition[0] + 1, this.currentPosition[1]])) {
                     this.updateGrid([this.currentPosition[0] + 1, this.currentPosition[1]])
-                    this.levelScore -= 12
+                    this.levelScore -= 55
                 }
                 break
             case 'up':
                 if (this.peekMove([this.currentPosition[0], this.currentPosition[1] - 1])) {
                     this.updateGrid([this.currentPosition[0], this.currentPosition[1] - 1])
-                    this.levelScore -= 12
+                    this.levelScore -= 55
                 }
                 break
 
             case 'down':
                 if (this.peekMove([this.currentPosition[0], this.currentPosition[1] + 1])) {
                     this.updateGrid([this.currentPosition[0], this.currentPosition[1] + 1])
-                    this.levelScore -= 12
+                    this.levelScore -= 55
                 }
                 break
             default:
@@ -254,11 +254,18 @@ class Level {
             say(finishedLevelMsg)
         }
         else {
-            var finishedLevelMsg = 'You win! You got ' + calculateTotalScore(this.levelScore) + ' points. Press space to continue'
+            var finishedLevelMsg = 'You win! You got ' + calculateTotalScore(this.handleLevelScore(this.levelScore)) + ' points. Press space to continue'
             document.querySelector('#gameArea').innerHTML = finishedLevelMsg
             say(finishedLevelMsg)
 
         }
 
+    }
+    handleLevelScore() {
+        if (this.levelScore <= 1000) {
+            this.levelScore = 1000
+        }
+        //todo
+        return this.levelScore
     }
 }

@@ -47,16 +47,16 @@ class Level {
         document.querySelector('#gameArea').innerHTML = ''
         let tableString = '<table id = "gameGrid">'
         for (let i = 0; i < 10; i++) {
-            tableString += '<tr class = row' + i + '>'
+            tableString += '<tr>'
             for (let j = 0; j < 10; j++) {
                 if (this.currentPosition[0] == j && this.currentPosition[1] == i) {
-                    tableString += '<td class = "row' + i + '  col' + j + '"><img src = "player.png"></td>'
+                    tableString += '<td><img src = "player.png" alt="Player"></td>'
                 }
                 if (this.isTherePokemonAt(j, i)) {
-                    tableString += '<td class = "row' + i + '  col' + j + '"><img src = "' + this.parsePokemon(this.isTherePokemonAt(j, i).id) + '"></td>'
+                    tableString += '<td><img src = "' + this.parsePokemon(this.isTherePokemonAt(j, i).id) + '"alt=' + this.getPokemonName(this.isTherePokemonAt(j, i).id) + '></td>'
                 }
                 else {
-                    tableString += '<td class = "row' + i + ' col' + j + '"></td>'
+                    tableString += '<td></td>'
                 }
             }
             tableString += '</tr>'
@@ -73,6 +73,15 @@ class Level {
         }
         return null
     }
+    getPokemonName(pID) {
+        for (let i = 0; i < allPokemonData.length; i++) {
+            if (allPokemonData[i].pokemonID == pID) {
+                return allPokemonData[i].name
+            }
+        }
+        return null
+    }
+
     parsePokemonAudio(pID) {
         for (let i = 0; i < allPokemonData.length; i++) {
             if (allPokemonData[i].pokemonID == pID) {
@@ -242,21 +251,14 @@ class Level {
         if (this.currLevel < allLevelData.length) {
             var finishedLevelMsg = 'Level complete! You got ' + this.levelScore + ' points. Press space to continue'
             document.querySelector('#gameArea').innerHTML = finishedLevelMsg
-            this.say(finishedLevelMsg)
+            say(finishedLevelMsg)
         }
         else {
-            var finishedLevelMsg = 'You win! You got ' + this.levelScore + ' points. Press space to continue'
+            var finishedLevelMsg = 'You win! You got ' + calculateTotalScore(this.levelScore) + ' points. Press space to continue'
             document.querySelector('#gameArea').innerHTML = finishedLevelMsg
-            this.say(finishedLevelMsg)
+            say(finishedLevelMsg)
 
         }
 
     }
-    say(text) {
-        var utterThis = new SpeechSynthesisUtterance(text);
-        window.speechSynthesis.speak(utterThis);
-    }
 }
-
-
-

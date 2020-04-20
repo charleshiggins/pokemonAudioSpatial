@@ -53,7 +53,7 @@ class Level {
                     tableString += '<td><img src = "player.png" alt="Player"></td>'
                 }
                 if (this.isTherePokemonAt(j, i)) {
-                    tableString += '<td><img src = "' + this.parsePokemon(this.isTherePokemonAt(j, i).id) + '"alt=' + this.getPokemonName(this.isTherePokemonAt(j, i).id) + '></td>'
+                    tableString += '<td><img src = "' + this.parsePokemon(this.isTherePokemonAt(j, i).id) + '"alt=' + this.getPokemonName(this.isTherePokemonAt(j, i).id) + ' class = "hidden"></td>'
                 }
                 else {
                     tableString += '<td></td>'
@@ -195,49 +195,38 @@ class Level {
         switch (this.currDirection) {
             case 'left':
                 if (this.isTherePokemonAt(this.currentPosition[0] - 1, this.currentPosition[1])) {
-                    say("Caught!")
-
+                    say("Caught " + this.getPokemonName(this.isTherePokemonAt(this.currentPosition[0] - 1, this.currentPosition[1]).id))
                     this.catchPokemon(this.currentPosition[0] - 1, this.currentPosition[1])
-
                 }
                 else {
                     say("Miss!")
-
                 }
                 break
 
             case 'right':
                 if (this.isTherePokemonAt(this.currentPosition[0] + 1, this.currentPosition[1])) {
-                    say("Caught!")
-
+                    say("Caught " + this.getPokemonName(this.isTherePokemonAt(this.currentPosition[0] + 1, this.currentPosition[1]).id))
                     this.catchPokemon(this.currentPosition[0] + 1, this.currentPosition[1])
-
                 }
                 else {
                     say("Miss!")
-
                 }
-
                 break
 
             case 'up':
                 if (this.isTherePokemonAt(this.currentPosition[0], this.currentPosition[1] - 1)) {
-                    say("Caught!")
-
+                    say("Caught " + this.getPokemonName(this.isTherePokemonAt(this.currentPosition[0], this.currentPosition[1]-1).id))
                     this.catchPokemon(this.currentPosition[0], this.currentPosition[1] - 1)
-
                 }
                 else {
                     say("Miss!")
-
                 }
 
                 break
 
             case 'down':
                 if (this.isTherePokemonAt(this.currentPosition[0], this.currentPosition[1] + 1)) {
-                    say("Caught!")
-
+                    say("Caught " + this.getPokemonName(this.isTherePokemonAt(this.currentPosition[0], this.currentPosition[1]+1).id))
                     this.catchPokemon(this.currentPosition[0], this.currentPosition[1] + 1)
                 }
                 else {
@@ -282,12 +271,12 @@ class Level {
     finishLevel() {
         this.completed = true;
         if (this.currLevel < allLevelData.length) {
-            var finishedLevelMsg = 'Level complete! You got ' + this.levelScore + ' points. Press space to continue'
+            var finishedLevelMsg = 'Level complete! You got ' + this.levelScore + ' points. Press space to continue.'
             document.querySelector('#gameArea').innerHTML = finishedLevelMsg
             say(finishedLevelMsg)
         }
         else {
-            var finishedLevelMsg = 'You win! You got ' + calculateTotalScore(this.handleLevelScore(this.levelScore)) + ' points. Press space to continue'
+            var finishedLevelMsg = 'You win! You got ' + calculateTotalScore(this.handleLevelScore(this.levelScore)) + ' points. Press space to play again.'
             document.querySelector('#gameArea').innerHTML = finishedLevelMsg
             say(finishedLevelMsg)
 
@@ -298,7 +287,6 @@ class Level {
         if (this.levelScore <= 1000) {
             this.levelScore = 1000
         }
-        //todo
         return this.levelScore
     }
 }

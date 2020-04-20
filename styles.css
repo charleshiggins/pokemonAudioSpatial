@@ -6,3 +6,7 @@ td{
 #gameGrid{
     background-image: url("grass.png");
 }
+
+.hidden{
+    display: none
+}

@@ -7,13 +7,13 @@ var allLevelData =
     },
     {
         'level': 2,
-        'pokemonCoordinates': [{ 'id': 25, 'coordinates': [2, 4] }, { 'id': 43, 'coordinates': [9, 0] }, { 'id': 50, 'coordinates': [0, 8] }],
+        'pokemonCoordinates': [{ 'id': 25, 'coordinates': [5, 6] }, { 'id': 43, 'coordinates': [0, 0] }, { 'id': 50, 'coordinates': [0, 1] }],
         'playerCoordinates': [9, 9]
 
     },
     {
         'level': 3,
-        'pokemonCoordinates': [{ 'id': 54, 'coordinates': [2, 4] }, { 'id': 81, 'coordinates': [9, 0] }, { 'id': 95, 'coordinates': [0, 8] }],
+        'pokemonCoordinates': [{ 'id': 54, 'coordinates': [8, 9] }, { 'id': 81, 'coordinates': [0, 1] }, { 'id': 95, 'coordinates': [5, 4] }],
         'playerCoordinates': [9, 9]
 
     },

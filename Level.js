@@ -1,14 +1,12 @@
 class Level {
     constructor(level) {
-        console.log('in the console')
         this.currDirection = []
-        this.currLevel = level
+        this.currLevel = level + 1
         this.currentPosition = allLevelData[level].playerCoordinates
         this.pokemonCoordinates = allLevelData[level].pokemonCoordinates
         this.completed = false
         this.keyInputListener
         this.levelScore = 0
-        this.levleTimer
     }
 
     init() {
@@ -23,7 +21,6 @@ class Level {
         return [x, y]
     }
     findNearestPokemon() {
-        console.log(this.pokemonCoordinates)
         let nearestDistance = null
         let nearestPokemon = null
         for (let i = 0; i < this.pokemonCoordinates.length; i++) {
@@ -107,9 +104,13 @@ class Level {
                 if (!this.completed) {
                     this.throwPokeball()
                 }
-                else {
+                else if (this.currLevel < allLevelData.length) {
                     document.removeEventListener('keydown', this.keyInputListener);
                     goNextLevel(this.levelScore)
+                }
+                else {
+                    document.removeEventListener('keydown', this.keyInputListener);
+                    restartGame()
                 }
                 break
             default:
@@ -177,50 +178,31 @@ class Level {
         switch (this.currDirection) {
             case 'left':
                 if (this.isTherePokemonAt(this.currentPosition[0] - 1, this.currentPosition[1])) {
-                    console.log('viable left catch')
                     this.catchPokemon(this.currentPosition[0] - 1, this.currentPosition[1])
-                }
-                else {
-                    console.log('no viable left catch')
                 }
                 break
 
             case 'right':
                 if (this.isTherePokemonAt(this.currentPosition[0] + 1, this.currentPosition[1])) {
-                    console.log('viable right catch')
                     this.catchPokemon(this.currentPosition[0] + 1, this.currentPosition[1])
-
-                }
-                else {
-                    console.log('no viable right catch')
 
                 }
                 break
 
             case 'up':
                 if (this.isTherePokemonAt(this.currentPosition[0], this.currentPosition[1] - 1)) {
-                    console.log('viable up catch')
                     this.catchPokemon(this.currentPosition[0], this.currentPosition[1] - 1)
-
-                }
-                else {
-                    console.log('no viable up catch')
 
                 }
                 break
 
             case 'down':
                 if (this.isTherePokemonAt(this.currentPosition[0], this.currentPosition[1] + 1)) {
-                    console.log('viable down catch')
                     this.catchPokemon(this.currentPosition[0], this.currentPosition[1] + 1)
 
                 }
-                else {
-                    console.log('no viable down catch')
-                }
                 break
             default:
-                console.log('this is an issue')
         }
 
     }
@@ -257,15 +239,23 @@ class Level {
     }
     finishLevel() {
         this.completed = true;
-        var finishedLevelMsg = 'Level complete! You got ' +  this.levelScore + ' points. Press space to continue'
-        document.querySelector('#gameArea').innerHTML = finishedLevelMsg
-        this.say(finishedLevelMsg)
+        if (this.currLevel < allLevelData.length) {
+            var finishedLevelMsg = 'Level complete! You got ' + this.levelScore + ' points. Press space to continue'
+            document.querySelector('#gameArea').innerHTML = finishedLevelMsg
+            this.say(finishedLevelMsg)
+        }
+        else {
+            var finishedLevelMsg = 'You win! You got ' + this.levelScore + ' points. Press space to continue'
+            document.querySelector('#gameArea').innerHTML = finishedLevelMsg
+            this.say(finishedLevelMsg)
+
+        }
 
     }
     say(text) {
-        var utterThis  = new SpeechSynthesisUtterance(text);
+        var utterThis = new SpeechSynthesisUtterance(text);
         window.speechSynthesis.speak(utterThis);
-      }
+    }
 }
 
 

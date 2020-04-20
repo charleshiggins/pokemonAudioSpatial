@@ -94,31 +94,39 @@ class Level {
     handleKeyInput(e) {
         switch (e.key) {
             case 'ArrowLeft':
-                this.currDirection = 'left'
-                this.move('left')
+                if (!this.completed) {
+                    this.currDirection = 'left'
+                    this.move('left')
+                }
                 break
             case 'ArrowRight':
-                this.currDirection = 'right'
-                this.move('right')
+                if (!this.completed) {
+                    this.currDirection = 'right'
+                    this.move('right')
+                }
                 break
             case 'ArrowUp':
-                this.currDirection = 'up'
-                this.move('up')
+                if (!this.completed) {
+                    this.currDirection = 'up'
+                    this.move('up')
+                }
                 break
             case 'ArrowDown':
-                this.currDirection = 'down'
-                this.move('down')
+                if (!this.completed) {
+                    this.currDirection = 'down'
+                    this.move('down')
+                }
                 break
             case ' ':
                 if (!this.completed) {
                     this.throwPokeball()
                 }
                 else if (this.currLevel < allLevelData.length) {
-                    document.removeEventListener('keydown', this.keyInputListener);
+                    document.removeEventListener('keyup', this.keyInputListener);
                     goNextLevel(this.handleLevelScore(this.levelScore))
                 }
                 else {
-                    document.removeEventListener('keydown', this.keyInputListener);
+                    document.removeEventListener('keyup', this.keyInputListener);
                     restartGame()
                 }
                 break
@@ -129,7 +137,7 @@ class Level {
 
     createKeyListener() {
         this.keyInputListener = ((e) => this.handleKeyInput(e)).bind(this)
-        document.addEventListener('keydown', this.keyInputListener);
+        document.addEventListener('keyup', this.keyInputListener);
     }
 
     move(direction) {
@@ -187,28 +195,53 @@ class Level {
         switch (this.currDirection) {
             case 'left':
                 if (this.isTherePokemonAt(this.currentPosition[0] - 1, this.currentPosition[1])) {
+                    say("Caught!")
+
                     this.catchPokemon(this.currentPosition[0] - 1, this.currentPosition[1])
+
+                }
+                else {
+                    say("Miss!")
+
                 }
                 break
 
             case 'right':
                 if (this.isTherePokemonAt(this.currentPosition[0] + 1, this.currentPosition[1])) {
+                    say("Caught!")
+
                     this.catchPokemon(this.currentPosition[0] + 1, this.currentPosition[1])
 
                 }
+                else {
+                    say("Miss!")
+
+                }
+
                 break
 
             case 'up':
                 if (this.isTherePokemonAt(this.currentPosition[0], this.currentPosition[1] - 1)) {
+                    say("Caught!")
+
                     this.catchPokemon(this.currentPosition[0], this.currentPosition[1] - 1)
 
                 }
+                else {
+                    say("Miss!")
+
+                }
+
                 break
 
             case 'down':
                 if (this.isTherePokemonAt(this.currentPosition[0], this.currentPosition[1] + 1)) {
-                    this.catchPokemon(this.currentPosition[0], this.currentPosition[1] + 1)
+                    say("Caught!")
 
+                    this.catchPokemon(this.currentPosition[0], this.currentPosition[1] + 1)
+                }
+                else {
+                    say("Miss!")
                 }
                 break
             default:

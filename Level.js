@@ -256,8 +256,16 @@ class Level {
         }
     }
     finishLevel() {
-        console.log('the level is over')
         this.completed = true;
-        document.querySelector('#gameArea').innerHTML = 'level completed, press space to continue' + this.levelScore
+        document.querySelector('#gameArea').innerHTML = 'Level complete! You got ' +  this.levelScore + ' points. Press space to continue'
+        this.say('Level complete! Your score is ' +  this.levelScore + 'Press space to continue')
+
     }
+    say(text) {
+        var utterThis  = new SpeechSynthesisUtterance(text);
+        window.speechSynthesis.speak(utterThis);
+      }
 }
+
+
+

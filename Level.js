@@ -257,8 +257,9 @@ class Level {
     }
     finishLevel() {
         this.completed = true;
-        document.querySelector('#gameArea').innerHTML = 'Level complete! You got ' +  this.levelScore + ' points. Press space to continue'
-        this.say('Level complete! Your score is ' +  this.levelScore + 'Press space to continue')
+        var finishedLevelMsg = 'Level complete! You got ' +  this.levelScore + ' points. Press space to continue'
+        document.querySelector('#gameArea').innerHTML = finishedLevelMsg
+        this.say(finishedLevelMsg)
 
     }
     say(text) {

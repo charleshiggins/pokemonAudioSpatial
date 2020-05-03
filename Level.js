@@ -12,7 +12,14 @@ class Level {
     init() {
         this.drawGrid()
         this.createKeyListener()
-        this.pokemonSound()
+        this.initSound()
+    }
+    initSound() {
+        var sound = new Howl({
+            src: ['Audio/Instructions.mp3'] 
+        });
+        sound.play();
+
     }
 
     getRelativePosition(sound) {
@@ -215,7 +222,7 @@ class Level {
 
             case 'up':
                 if (this.isTherePokemonAt(this.currentPosition[0], this.currentPosition[1] - 1)) {
-                    say("Caught " + this.getPokemonName(this.isTherePokemonAt(this.currentPosition[0], this.currentPosition[1]-1).id))
+                    say("Caught " + this.getPokemonName(this.isTherePokemonAt(this.currentPosition[0], this.currentPosition[1] - 1).id))
                     this.catchPokemon(this.currentPosition[0], this.currentPosition[1] - 1)
                 }
                 else {
@@ -226,7 +233,7 @@ class Level {
 
             case 'down':
                 if (this.isTherePokemonAt(this.currentPosition[0], this.currentPosition[1] + 1)) {
-                    say("Caught " + this.getPokemonName(this.isTherePokemonAt(this.currentPosition[0], this.currentPosition[1]+1).id))
+                    say("Caught " + this.getPokemonName(this.isTherePokemonAt(this.currentPosition[0], this.currentPosition[1] + 1).id))
                     this.catchPokemon(this.currentPosition[0], this.currentPosition[1] + 1)
                 }
                 else {

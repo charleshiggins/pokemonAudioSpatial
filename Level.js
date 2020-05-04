@@ -12,11 +12,14 @@ class Level {
     init() {
         this.drawGrid()
         this.createKeyListener()
-        this.initSound()
+        if (this.currLevel == 1) {
+            this.initSound()
+
+        }
     }
     initSound() {
         var sound = new Howl({
-            src: ['Audio/Instructions.mp3'] 
+            src: ['Audio/Instructions.mp3']
         });
         sound.play();
 
